@@ -7,10 +7,21 @@ services:
     ports:
       - "8069:8069"
     restart: always
+    volumes:
+      - odoo-13-web-data:/var/lib/odoo
+      #- odoo-13-web-data:/var/lib/odoo
+      #- ./addons:/mnt/extra-addons
   db:
     image: postgres:10
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_PASSWORD=odoo
       - POSTGRES_USER=odoo
+      - PGDATA=/var/lib/postgresql/data/pgdata
     restart: always
+    volumes:
+      - odoo-13-db-data:/var/lib/postgresql/data/pgdata
+
+volumes:
+  odoo-13-db-data:
+  odoo-13-web-data:
