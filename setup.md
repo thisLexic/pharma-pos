@@ -7,6 +7,8 @@
 
 # Setup
 ## Create Server
+- ensure that the line below is not commented out
+> restart: always 
 - In the same directory level as the docker compose file, run the following:
 > docker-compose up
 - Go to the url 127.0.0.1:8069
