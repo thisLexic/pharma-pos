@@ -1,5 +1,4 @@
 # Missing
-- Allow for multiple users to exist (at the moment, only the Administrator exists)
 - Include my own application in the Odoo app list
 
 # Useful Commands
@@ -19,3 +18,9 @@
 - Check if the url is still active and if the sample project still exists
 - Restart the computer without explicitly terminating the docker container
 - Check if the url is still active and if the sample project still exists
+
+## Setup Email Server
+- Set a domain alias and Outgoing Mail Server
+- Create a new user
+- Set the new user's password locally
+- Login as new user
