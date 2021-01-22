@@ -23,6 +23,7 @@
 
 ## Setup Email Server
 - Set a domain alias and Outgoing Mail Server
+- Ensure that all new users to be added are whitelisted in the email server
 - Create a new user
 - Set the new user's password locally
 - Login as new user
