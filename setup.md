@@ -4,6 +4,10 @@
 # Useful Commands
 - Display all running docker containers
 > docker ps
+- Start the container when its turned off
+> sudo docker-compose up
+- SSH to container
+> sudo docker exec -it [conatiner-id] sh
 
 # Setup
 ## Create Server

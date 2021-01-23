@@ -9,8 +9,7 @@ services:
     #restart: always
     volumes:
       - odoo-13-web-data:/var/lib/odoo
-      #- odoo-13-web-data:/var/lib/odoo
-      #- ./addons:/mnt/extra-addons
+      - ./addons:/mnt/extra-addons
   db:
     image: postgres:10
     environment:
