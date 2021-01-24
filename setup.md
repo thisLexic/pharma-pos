@@ -33,3 +33,6 @@
 - Create a new user
 - Set the new user's password locally
 - Login as new user
+
+## Install Apps
+- backend_theme_v13
