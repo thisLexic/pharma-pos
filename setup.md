@@ -8,6 +8,8 @@
 > sudo docker-compose up
 - SSH to container
 > sudo docker exec -it [conatiner-id] sh
+- Remove stopped containers so uping the next time will reflect changes
+> docker-compose rm
 
 # Setup
 ## Create Server
