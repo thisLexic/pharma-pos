@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_pharma-pos_product,pharma-pos.product,model_pharma-pos_product,base.group_user,1,1,1,1
