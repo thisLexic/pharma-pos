@@ -1,3 +1,5 @@
+from datetime import date
+
 from odoo import models, fields, api
 
 
@@ -9,3 +11,4 @@ class Product_Name(models.Model):
     ]
 
     name = fields.Char(string="Product Name")
+    date_added = fields.Date(string="Date Added", default=date.today())

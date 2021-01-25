@@ -10,6 +10,7 @@
                 <sheet>
                     <group col="12">
                         <field name="name" colspan="4"/>
+                        <field name="date_added" colspan="4" readonly="1"/>
                     </group>
                 </sheet>
             </form>
@@ -23,6 +24,7 @@
             <tree default_order="name">
                 <!-- <field name="name" string="Product Name"/> -->
                 <field name="name"/>
+                <field name="date_added"/>
             </tree>
         </field>
     </record>
