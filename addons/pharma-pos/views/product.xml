@@ -1,0 +1,45 @@
+<odoo>
+
+<!-- Product Name -->
+
+    <record id="product_name_form" model="ir.ui.view">
+        <field name="name">Product Name Form</field>
+        <field name="model">pharma_pos.product_name</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group col="12">
+                        <field name="name" colspan="4"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="product_name_tree" model="ir.ui.view">
+        <field name="name">Product Name Tree</field>
+        <field name="model">pharma_pos.product_name</field>
+        <field name="arch" type="xml">
+            <tree default_order="name">
+                <!-- <field name="name" string="Product Name"/> -->
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+
+     <record id="product_name_action" model="ir.actions.act_window">
+        <field name="name">Product Name</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">pharma_pos.product_name</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- <menuitem id="pharma_pos_menu" name="Pharma" sequence="200" action="product_name_action" web_icon="gov_bene_phils,static/sss_icon.png" /> -->
+    <menuitem id="pharma_pos_menu" name="Pharma" sequence="200" action="product_name_action" />
+
+    <menuitem id="product_name_menu" parent="pharma_pos_menu" name="Product Name" sequence="1" action="product_name_action" />
+
+
+</odoo>

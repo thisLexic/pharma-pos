@@ -14,12 +14,8 @@
 
     # always loaded
      'data': [
-         'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
 
-    #     'views/sss.xml',
-    #     'views/philhealth.xml',
-    #     'views/pagibig.xml',
-    #     'views/hr_employee.xml',
-    #     'views/res_company.xml',
+        'views/product.xml',
     ],
 }
