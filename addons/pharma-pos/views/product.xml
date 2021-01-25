@@ -1,6 +1,6 @@
 <odoo>
 
-<!-- Product Name -->
+    <!-- Product Name -->
 
     <record id="product_name_form" model="ir.ui.view">
         <field name="name">Product Name Form</field>
@@ -38,12 +38,55 @@
         <field name="res_model">pharma_pos.product_name</field>
         <field name="view_mode">tree,form</field>
     </record>
-
+    
+    <!-- Product Main Menu -->
 
     <!-- <menuitem id="pharma_pos_menu" name="Pharma" sequence="200" action="product_name_action" web_icon="gov_bene_phils,static/sss_icon.png" /> -->
-    <menuitem id="pharma_pos_menu" name="Pharma" sequence="200" action="product_name_action" />
+    <menuitem id="product_menu" name="Meds" sequence="200" action="product_name_action" />
 
-    <menuitem id="product_name_menu" parent="pharma_pos_menu" name="Product Name" sequence="1" action="product_name_action" />
+    <menuitem id="product_name_menu" parent="product_menu" name="Name" sequence="1" action="product_name_action" />
+
+
+    <!-- Product Size -->
+
+    <record id="product_size_form" model="ir.ui.view">
+        <field name="name">Product Size Form</field>
+        <field name="model">pharma_pos.product_size</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group col="12">
+                        <group col="4" colspan="6">    
+                            <field name="size" colspan="4"/>
+                            <field name="date_added" colspan="4" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="product_size_tree" model="ir.ui.view">
+        <field name="name">Product Size Tree</field>
+        <field name="model">pharma_pos.product_size</field>
+        <field name="arch" type="xml">
+            <tree default_order="size">
+                <!-- <field name="size" string="Product Name"/> -->
+                <field name="size"/>
+                <field name="date_added"/>
+            </tree>
+        </field>
+    </record>
+
+
+     <record id="product_size_action" model="ir.actions.act_window">
+        <field name="name">Product Size</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">pharma_pos.product_size</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="product_size_menu" parent="product_menu" name="Size" sequence="3" action="product_size_action" />
 
 
 </odoo>
