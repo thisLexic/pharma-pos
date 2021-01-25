@@ -21,5 +21,5 @@
     #     'views/pagibig.xml',
     #     'views/hr_employee.xml',
     #     'views/res_company.xml',
-    # ],
+    ],
 }
