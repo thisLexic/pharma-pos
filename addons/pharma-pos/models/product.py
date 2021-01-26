@@ -7,10 +7,11 @@ class Product_Name(models.Model):
     _name = 'pharma_pos.product_name'
     _description = 'Contains names of products'
     _sql_constraints = [
-        ('product_name_name_unique', 'unique(name)', 'This product name already exists!')
+        ('product_name_generic_name_branded_name_unique', 'unique(generic_name, branded_name)', 'This product name already exists!')
     ]
 
-    name = fields.Char(string="Product Name")
+    generic_name = fields.Char(string="Generic Name")
+    branded_name = fields.Char(string="Branded Name")
     date_added = fields.Date(string="Date Added", default=date.today())
 
 
