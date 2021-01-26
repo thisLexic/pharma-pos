@@ -24,3 +24,5 @@ class Product_Size(models.Model):
 
     size = fields.Char(string="Product Size")
     date_added = fields.Date(string="Date Added", default=date.today())
+    consumption_method = fields.Selection([('tablet', 'Tablet'), ('injectable', 'Injectable'), ('capsule', 'Capsule'), ('syrup', 'Syrup')], string="Type")
+    
