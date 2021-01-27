@@ -35,7 +35,7 @@
 
 
      <record id="product_name_action" model="ir.actions.act_window">
-        <field name="name">Product Name</field>
+        <field name="name">Name</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">pharma_pos.product_name</field>
         <field name="view_mode">tree,form</field>
@@ -84,7 +84,7 @@
 
 
      <record id="product_size_action" model="ir.actions.act_window">
-        <field name="name">Product Size</field>
+        <field name="name">Size</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">pharma_pos.product_size</field>
         <field name="view_mode">tree,form</field>
