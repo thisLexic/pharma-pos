@@ -10,8 +10,8 @@
                 <sheet>
                     <group col="12">
                         <group col="4" colspan="6">    
-                            <field name="generic_name" colspan="4"/>
-                            <field name="branded_name" colspan="4"/>
+                            <field name="generic_name" colspan="4" required="1"/>
+                            <field name="branded_name" colspan="4" required="1"/>
                             <field name="date_added" colspan="4" readonly="1"/>
                         </group>
                     </group>
@@ -59,8 +59,8 @@
                 <sheet>
                     <group col="12">
                         <group col="4" colspan="6">    
-                            <field name="size" colspan="4"/>
-                            <field name="consumption_method" colspan="4"/>
+                            <field name="size" colspan="4" required="1"/>
+                            <field name="consumption_method" colspan="4" required="1"/>
                             <field name="date_added" colspan="4" readonly="1"/>
                         </group>
                     </group>
