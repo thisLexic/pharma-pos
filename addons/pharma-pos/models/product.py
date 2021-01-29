@@ -46,3 +46,4 @@ class Product(models.Model):
     _description = 'The product that is sold with its name (Product_Name) and unit (Product_Size) specified using foreign keys'
 
     product_name_id = fields.Many2one('pharma_pos.product_name', string="Med")
+    product_size_id = fields.Many2one('pharma_pos.product_size', string="Size")

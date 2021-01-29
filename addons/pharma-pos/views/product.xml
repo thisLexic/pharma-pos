@@ -11,6 +11,7 @@
                     <group col="12">
                         <group col="4" colspan="6">    
                             <field name="product_name_id" colspan="4" required="1" options="{'no_open': True, 'no_create_edit': True, 'no_create': True}"/>
+                            <field name="product_size_id" colspan="4" required="1" options="{'no_open': True, 'no_create_edit': True, 'no_create': True}"/>
                         </group>
                     </group>
                 </sheet>
@@ -24,6 +25,7 @@
         <field name="arch" type="xml">
             <tree default_order="product_name_id">
                 <field name="product_name_id"/>
+                <field name="product_size_id"/>
             </tree>
         </field>
     </record>
@@ -124,12 +126,24 @@
         <field name="name">Product Size Tree</field>
         <field name="model">pharma_pos.product_size</field>
         <field name="arch" type="xml">
-            <tree default_order="size">
+            <tree default_order="consumption_method, size">
                 <!-- <field name="size" string="Product Name"/> -->
-                <field name="size"/>
-                <field name="consumption_method"/>                
+                <field name="consumption_method"/>   
+                <field name="size"/>             
                 <field name="date_added"/>
             </tree>
+        </field>
+    </record>
+
+
+    <record id="product_size_search" model="ir.ui.view">
+        <field name="name">Product Size Search</field>
+        <field name="model">pharma_pos.product_size</field>
+        <field name="arch" type="xml">
+            <search string="Search Product Size">
+                <field name="size"/>
+                <field name="consumption_method"/>
+           </search>
         </field>
     </record>
 
