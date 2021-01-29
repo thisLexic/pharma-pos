@@ -113,7 +113,7 @@
                     <group col="12">
                         <group col="4" colspan="6">    
                             <field name="size" colspan="4" required="1"/>
-                            <field name="consumption_method" colspan="4" required="1"/>
+                            <!-- <field name="consumption_method" colspan="4" required="1"/> -->
                             <field name="date_added" colspan="4" readonly="1"/>
                         </group>
                     </group>
@@ -126,10 +126,10 @@
         <field name="name">Product Size Tree</field>
         <field name="model">pharma_pos.product_size</field>
         <field name="arch" type="xml">
-            <tree default_order="consumption_method, size">
+            <tree default_order="size">
                 <!-- <field name="size" string="Product Name"/> -->
-                <field name="consumption_method"/>   
-                <field name="size"/>             
+                <field name="size"/>      
+                <field name="product_type_id"/>          
                 <field name="date_added"/>
             </tree>
         </field>
@@ -142,7 +142,7 @@
         <field name="arch" type="xml">
             <search string="Search Product Size">
                 <field name="size"/>
-                <field name="consumption_method"/>
+                <!-- <field name="consumption_method"/> -->
            </search>
         </field>
     </record>
@@ -157,5 +157,52 @@
 
     <menuitem id="product_size_menu" parent="product_main_menu" name="Size" sequence="3" action="product_size_action" />
 
+    <!-- Product Type -->
 
+    <record id="product_type_form" model="ir.ui.view">
+        <field name="name">Product Type Form</field>
+        <field name="model">pharma_pos.product_type</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group col="12">
+                        <group col="4" colspan="6">    
+                            <field name="consumption_method" colspan="4" required="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="product_type_tree" model="ir.ui.view">
+        <field name="name">Product Type Tree</field>
+        <field name="model">pharma_pos.product_type</field>
+        <field name="arch" type="xml">
+            <tree default_order="consumption_method">
+                <field name="consumption_method"/>           
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="product_type_search" model="ir.ui.view">
+        <field name="name">Product Type Search</field>
+        <field name="model">pharma_pos.product_type</field>
+        <field name="arch" type="xml">
+            <search string="Search Product Type">
+                <field name="consumption_method"/>
+           </search>
+        </field>
+    </record>
+
+
+     <record id="product_type_action" model="ir.actions.act_window">
+        <field name="name">Type</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">pharma_pos.product_type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="product_type_menu" parent="product_main_menu" name="Type" sequence="3" action="product_type_action" />
 </odoo>

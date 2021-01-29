@@ -38,8 +38,16 @@ class Product_Size(models.Model):
 
     size = fields.Char(string="Product Size")
     date_added = fields.Date(string="Date Added", default=date.today())
-    consumption_method = fields.Selection([('tablet', 'Tablet'), ('injectable', 'Injectable'), ('capsule', 'Capsule'), ('syrup', 'Syrup')], string="Type")
+    product_type_id = fields.Many2one('pharma_pos.product_type', string="Type")
     
+class Product_Type(models.Model):
+    _name = 'pharma_pos.product_type'
+    _description = 'Contains types of products'
+    _sql_constraints = [
+        ('product_type_consumption_method_unique', 'unique(consumption_method)', 'This product type already exists!')
+    ]
+
+    consumption_method = fields.Char(string="Type")
 
 class Product(models.Model):
     _name = 'pharma_pos.product'
