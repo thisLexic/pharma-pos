@@ -113,7 +113,7 @@
                     <group col="12">
                         <group col="4" colspan="6">    
                             <field name="size" colspan="4" required="1"/>
-                            <!-- <field name="consumption_method" colspan="4" required="1"/> -->
+                            <field name="product_type_id" colspan="4" required="1" options="{'no_open': True, 'no_create_edit': True, 'no_create': True}"/>
                             <field name="date_added" colspan="4" readonly="1"/>
                         </group>
                     </group>
