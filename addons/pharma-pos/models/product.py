@@ -13,7 +13,7 @@ class Product_Name(models.Model):
     def name_get(self):
         result = []
         for record in self:
-            name = record.generic_name + " ({})".format(record.branded_name)
+            name = record.branded_name + " ({})".format(record.generic_name)
             result.append((record.id, name))
         return result
 
