@@ -32,7 +32,7 @@ class Product_Size(models.Model):
     def name_get(self):
         result = []
         for record in self:
-            name = record.size + " {}".format(str(record.product_type_id))
+            name = record.size + " {}".format(getStringRepresentation(record.product_type_id.name_get()))
             result.append((record.id, name))
         return result
 
@@ -62,3 +62,9 @@ class Product(models.Model):
 
     product_name_id = fields.Many2one('pharma_pos.product_name', string="Med")
     product_size_id = fields.Many2one('pharma_pos.product_size', string="Size")
+
+
+# Helper Functions
+
+def getStringRepresentation(nonString):
+    return nonString[0][1]
