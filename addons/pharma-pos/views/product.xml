@@ -1,5 +1,50 @@
 <odoo>
 
+    <!-- Product -->
+
+    <record id="product_form" model="ir.ui.view">
+        <field name="name">Product Form</field>
+        <field name="model">pharma_pos.product</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group col="12">
+                        <group col="4" colspan="6">    
+                            <field name="product_name_id" colspan="4" required="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="product_tree" model="ir.ui.view">
+        <field name="name">Product Tree</field>
+        <field name="model">pharma_pos.product</field>
+        <field name="arch" type="xml">
+            <tree default_order="product_name_id">
+                <field name="product_name_id"/>
+            </tree>
+        </field>
+    </record>
+
+
+     <record id="product_action" model="ir.actions.act_window">
+        <field name="name">Meds</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">pharma_pos.product</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <!-- Product Main Menu -->
+
+    <!-- <menuitem id="pharma_pos_menu" name="Pharma" sequence="200" action="product_name_action" web_icon="gov_bene_phils,static/sss_icon.png" /> -->
+    <menuitem id="product_main_menu" name="Meds" sequence="50" action="product_action" />
+
+    <menuitem id="product_menu" parent="product_main_menu" name="Meds" sequence="1" action="product_action" />
+
+
+
     <!-- Product Name -->
 
     <record id="product_name_form" model="ir.ui.view">
@@ -41,12 +86,7 @@
         <field name="view_mode">tree,form</field>
     </record>
     
-    <!-- Product Main Menu -->
-
-    <!-- <menuitem id="pharma_pos_menu" name="Pharma" sequence="200" action="product_name_action" web_icon="gov_bene_phils,static/sss_icon.png" /> -->
-    <menuitem id="product_menu" name="Meds" sequence="200" action="product_name_action" />
-
-    <menuitem id="product_name_menu" parent="product_menu" name="Name" sequence="1" action="product_name_action" />
+    <menuitem id="product_name_menu" parent="product_main_menu" name="Name" sequence="2" action="product_name_action" />
 
 
     <!-- Product Size -->
@@ -90,7 +130,7 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem id="product_size_menu" parent="product_menu" name="Size" sequence="3" action="product_size_action" />
+    <menuitem id="product_size_menu" parent="product_main_menu" name="Size" sequence="3" action="product_size_action" />
 
 
 </odoo>
