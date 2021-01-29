@@ -32,7 +32,7 @@ class Product_Size(models.Model):
     def name_get(self):
         result = []
         for record in self:
-            name = record.size + " {}".format(record.consumption_method)
+            name = record.size + " {}".format(str(record.product_type_id))
             result.append((record.id, name))
         return result
 
@@ -46,6 +46,13 @@ class Product_Type(models.Model):
     _sql_constraints = [
         ('product_type_consumption_method_unique', 'unique(consumption_method)', 'This product type already exists!')
     ]
+
+    def name_get(self):
+        result = []
+        for record in self:
+            name = record.consumption_method
+            result.append((record.id, name))
+        return result
 
     consumption_method = fields.Char(string="Type")
 
