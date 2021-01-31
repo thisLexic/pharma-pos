@@ -36,6 +36,16 @@
         </field>
     </record>
 
+    <record id="product_search" model="ir.ui.view">
+        <field name="name">Product Search</field>
+        <field name="model">pharma_pos.product</field>
+        <field name="arch" type="xml">
+            <search string="Search Product">
+                <field name="string_rep"/>
+           </search>
+        </field>
+    </record>
+
 
      <record id="product_action" model="ir.actions.act_window">
         <field name="name">Meds</field>
