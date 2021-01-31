@@ -1,0 +1,7 @@
+<odoo>
+    <data noupdate="1">
+        <record id="demo_product_type_capsule" model="pharma_pos.product_type">
+            <field name="consumption_method">Capsule</field>
+        </record>
+    </data>
+</odoo>

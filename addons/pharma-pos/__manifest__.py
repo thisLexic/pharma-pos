@@ -13,9 +13,12 @@
     'version': '1',
 
     # always loaded
-     'data': [
+    'data': [
         'security/ir.model.access.csv',
 
         'views/product.xml',
+    ],
+    'demo': [
+        'demo/product.xml',
     ],
 }
