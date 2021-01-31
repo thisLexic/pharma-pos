@@ -68,9 +68,17 @@ class Product(models.Model):
     def name_get(self):
         result = []
         for record in self:
-            name = getStringRepresentation(record.product_name_id.name_get()) + " " + getStringRepresentation(record.product_size_id.name_get())
+            name = record.string_rep
             result.append((record.id, name))
         return result
+
+    @api.depends('product_name_id', 'product_size_id')
+    def _get_string_rep(self):
+        for record in self:
+            try:
+                record.string_rep = getStringRepresentation(record.product_name_id.name_get()) + " " + getStringRepresentation(record.product_size_id.name_get())
+            except:
+                pass
 
     product_name_id = fields.Many2one('pharma_pos.product_name', string="Med")
     product_size_id = fields.Many2one('pharma_pos.product_size', string="Size")
@@ -78,6 +86,7 @@ class Product(models.Model):
     supplier_code = fields.Char(string="TGP Code")
     date_added = fields.Date(string="Date Added", default=date.today())
     is_sold = fields.Boolean(string="Is Sold", default=True)
+    string_rep = fields.Char(string="Name", compute="_get_string_rep", store=True)
 
 
 # Helper Functions
