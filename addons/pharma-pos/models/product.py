@@ -92,7 +92,8 @@ class Pack(models.Model):
     _name = 'pharma_pos.pack'
     _description = 'The pack of a product which may contain one or more products within one pack'
     _sql_constraints = [
-        ('pack_bar_code', 'unique(bar_code)', 'This bar code already exists!')
+        ('pack_bar_code', 'unique(bar_code)', 'This bar code already exists!'),
+        ('pack_product_id_count', 'unique(count, product_id)', 'A product with that number of items per pack already exists!')
     ]
 
     product_id = fields.Many2one('pharma_pos.product', string="Item")
