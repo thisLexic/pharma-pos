@@ -65,6 +65,13 @@ class Product(models.Model):
         ('product_product_name_id_product_size_id_unique', 'unique(product_name_id, product_size_id)', 'This combination of product name and size already exists!')
     ]
 
+    def name_get(self):
+        result = []
+        for record in self:
+            name = getStringRepresentation(record.product_name_id.name_get()) + " " + getStringRepresentation(record.product_size_id.name_get())
+            result.append((record.id, name))
+        return result
+
     product_name_id = fields.Many2one('pharma_pos.product_name', string="Med")
     product_size_id = fields.Many2one('pharma_pos.product_size', string="Size")
     store_code = fields.Char(string="Store Code")
