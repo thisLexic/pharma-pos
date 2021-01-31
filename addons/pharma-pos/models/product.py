@@ -59,9 +59,13 @@ class Product_Type(models.Model):
 class Product(models.Model):
     _name = 'pharma_pos.product'
     _description = 'The product that is sold with its name (Product_Name) and unit (Product_Size) specified using foreign keys'
+    _sql_constraints = [
+        ('product_store_code_unique', 'unique(store_code)', 'This store code already exists!')
+    ]
 
     product_name_id = fields.Many2one('pharma_pos.product_name', string="Med")
     product_size_id = fields.Many2one('pharma_pos.product_size', string="Size")
+    store_code = fields.Char(string="Store Code")
 
 
 # Helper Functions

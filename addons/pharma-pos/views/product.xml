@@ -12,6 +12,7 @@
                         <group col="4" colspan="6">    
                             <field name="product_name_id" colspan="4" required="1" options="{'no_open': True, 'no_create_edit': True, 'no_create': True}"/>
                             <field name="product_size_id" colspan="4" required="1" options="{'no_open': True, 'no_create_edit': True, 'no_create': True}"/>
+                            <field name="store_code" colspan="4" required="1" />
                         </group>
                     </group>
                 </sheet>
@@ -26,6 +27,7 @@
             <tree default_order="product_name_id">
                 <field name="product_name_id"/>
                 <field name="product_size_id"/>
+                <field name="store_code"/>
             </tree>
         </field>
     </record>
