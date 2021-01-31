@@ -59,8 +59,51 @@
     <!-- <menuitem id="pharma_pos_menu" name="Pharma" sequence="200" action="product_name_action" web_icon="gov_bene_phils,static/sss_icon.png" /> -->
     <menuitem id="product_main_menu" name="Meds" sequence="50" action="product_action" />
 
-    <menuitem id="product_menu" parent="product_main_menu" name="Meds" sequence="1" action="product_action" />
+    <menuitem id="product_menu" parent="product_main_menu" name="Meds" sequence="3" action="product_action" />
 
+
+    <!-- Pack -->
+
+    <record id="pack_form" model="ir.ui.view">
+        <field name="name">Pack Form</field>
+        <field name="model">pharma_pos.pack</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group col="12">
+                        <group col="4" colspan="6">    
+                            <field name="product_id" colspan="4" required="1"/>
+                            <field name="count" colspan="4" required="1"/>
+                            <field name="bar_code" colspan="4" required="1"/>
+                            <field name="is_sold" colspan="4" required="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="pack_tree" model="ir.ui.view">
+        <field name="name">Pack Tree</field>
+        <field name="model">pharma_pos.pack</field>
+        <field name="arch" type="xml">
+            <!-- <tree default_order="generic_name"> -->
+            <tree>
+                <field name="count"/>
+                <field name="bar_code"/>
+                <field name="is_sold"/>
+            </tree>
+        </field>
+    </record>
+
+     <record id="pack_action" model="ir.actions.act_window">
+        <field name="name">Pack</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">pharma_pos.pack</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <menuitem id="pack_menu" parent="product_main_menu" name="Pack" sequence="2" action="pack_action" />
 
 
     <!-- Product Name -->
@@ -115,7 +158,7 @@
         <field name="view_mode">tree,form</field>
     </record>
     
-    <menuitem id="product_name_menu" parent="product_main_menu" name="Name" sequence="2" action="product_name_action" />
+    <menuitem id="product_name_menu" parent="product_main_menu" name="Name" sequence="4" action="product_name_action" />
 
 
     <!-- Product Size -->
@@ -171,7 +214,7 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem id="product_size_menu" parent="product_main_menu" name="Size" sequence="3" action="product_size_action" />
+    <menuitem id="product_size_menu" parent="product_main_menu" name="Size" sequence="5" action="product_size_action" />
 
     <!-- Product Type -->
 
@@ -220,5 +263,5 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem id="product_type_menu" parent="product_main_menu" name="Type" sequence="3" action="product_type_action" />
+    <menuitem id="product_type_menu" parent="product_main_menu" name="Type" sequence="6" action="product_type_action" />
 </odoo>

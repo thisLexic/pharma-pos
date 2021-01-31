@@ -1,9 +1,7 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 
 access_pharma_pos_product_name,pharma_pos.product_name,model_pharma_pos_product_name,base.group_user,1,1,1,1
-
 access_pharma_pos_product_size,pharma_pos.product_size,model_pharma_pos_product_size,base.group_user,1,1,1,1
-
 access_pharma_pos_product_type,pharma_pos.product_type,model_pharma_pos_product_type,base.group_user,1,1,1,1
-
 access_pharma_pos_product,pharma_pos.product,model_pharma_pos_product,base.group_user,1,1,1,1
+access_pharma_pos_pack,pharma_pos.pack,model_pharma_pos_pack,base.group_user,1,1,1,1

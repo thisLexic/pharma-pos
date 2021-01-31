@@ -88,6 +88,17 @@ class Product(models.Model):
     is_sold = fields.Boolean(string="Is Sold", default=True)
     string_rep = fields.Char(string="Name", compute="_get_string_rep", store=True)
 
+class Pack(models.Model):
+    _name = 'pharma_pos.pack'
+    _description = 'The pack of a product which may contain one or more products within one pack'
+    _sql_constraints = [
+        ('pack_bar_code', 'unique(bar_code)', 'This bar code already exists!')
+    ]
+
+    product_id = fields.Many2one('pharma_pos.product', string="Item")
+    count = fields.Integer(string="Item/s per Pack")
+    bar_code = fields.Char(string="Bar Code")
+    is_sold = fields.Boolean(string="Is Sold", default=True)
 
 # Helper Functions
 
