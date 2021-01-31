@@ -6,39 +6,45 @@ from odoo import models, fields, api
 class Product_Name(models.Model):
     _name = 'pharma_pos.product_name'
     _description = 'Contains names of products'
+    _rec_name ='string_rep'
     _sql_constraints = [
         ('product_name_generic_name_branded_name_unique', 'unique(generic_name, branded_name)', 'This product name already exists!')
     ]
 
-    def name_get(self):
-        result = []
+    @api.depends('generic_name', 'branded_name')
+    def _get_string_rep(self):
         for record in self:
-            name = record.branded_name + " ({})".format(record.generic_name)
-            result.append((record.id, name))
-        return result
+            try:
+                record.string_rep = record.branded_name + " ({})".format(record.generic_name)
+            except:
+                pass
 
     generic_name = fields.Char(string="Generic Name")
     branded_name = fields.Char(string="Branded Name")
     date_added = fields.Date(string="Date Added", default=date.today())
+    string_rep = fields.Char(string="Med", compute="_get_string_rep", store=True)
 
 
 class Product_Size(models.Model):
     _name = 'pharma_pos.product_size'
     _description = 'Contains sizes of products'
+    _rec_name ='string_rep'
     _sql_constraints = [
         ('product_size_size_unique', 'unique(size)', 'This product size already exists!')
     ]
 
-    def name_get(self):
-        result = []
+    @api.depends('size', 'product_type_id')
+    def _get_string_rep(self):
         for record in self:
-            name = record.size + " {}".format(getStringRepresentation(record.product_type_id.name_get()))
-            result.append((record.id, name))
-        return result
+            try:
+                record.string_rep = record.size + " {}".format(getStringRepresentation(record.product_type_id.name_get()))
+            except:
+                pass
 
     size = fields.Char(string="Product Size")
     date_added = fields.Date(string="Date Added", default=date.today())
     product_type_id = fields.Many2one('pharma_pos.product_type', string="Type")
+    string_rep = fields.Char(string="Size", compute="_get_string_rep", store=True)
     
 class Product_Type(models.Model):
     _name = 'pharma_pos.product_type'
