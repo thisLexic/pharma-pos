@@ -61,12 +61,16 @@ class Product(models.Model):
     _description = 'The product that is sold with its name (Product_Name) and unit (Product_Size) specified using foreign keys'
     _sql_constraints = [
         ('product_store_code_unique', 'unique(store_code)', 'This store code already exists!'),
+        ('product_supplier_code_unique', 'unique(supplier_code)', 'This supplier code already exists!'),
         ('product_product_name_id_product_size_id_unique', 'unique(product_name_id, product_size_id)', 'This combination of product name and size already exists!')
     ]
 
     product_name_id = fields.Many2one('pharma_pos.product_name', string="Med")
     product_size_id = fields.Many2one('pharma_pos.product_size', string="Size")
     store_code = fields.Char(string="Store Code")
+    supplier_code = fields.Char(string="TGP Code")
+    date_added = fields.Date(string="Date Added", default=date.today())
+    is_sold = fields.Boolean(string="Is Sold", default=True)
 
 
 # Helper Functions
