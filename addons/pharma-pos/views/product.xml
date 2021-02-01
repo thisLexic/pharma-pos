@@ -78,6 +78,7 @@
                         <group col="4" colspan="6">    
                             <field name="pack_id" colspan="4" required="1"/>
                             <field name="price" colspan="4" required="1"/>
+                            <field name="currency_id" colspan="4" invisible="1" />
                             <field name="date_added" colspan="4" readonly="1"/>
                         </group>
                     </group>
@@ -94,6 +95,7 @@
             <tree>
                 <field name="pack_id"/>
                 <field name="price"/>
+                <field name="currency_id" invisible="1" />
                 <field name="date_added"/>
             </tree>
         </field>
