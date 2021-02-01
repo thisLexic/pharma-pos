@@ -85,15 +85,29 @@ class Product(models.Model):
 class Pack(models.Model):
     _name = 'pharma_pos.pack'
     _description = 'The pack of a product which may contain one or more products within one pack'
+    _rec_name ='string_rep'
     _sql_constraints = [
         ('pack_bar_code', 'unique(bar_code)', 'This bar code already exists!'),
         ('pack_product_id_count', 'unique(count, product_id)', 'A product with that number of items per pack already exists!')
     ]
 
+    @api.depends('product_id', 'count')
+    def _get_string_rep(self):
+        for record in self:
+            try:
+                record.string_rep = getStringRepresentation(record.product_id.name_get()) + " {}x".format(record.count)
+                # if recount.count == 1:
+                #     record.string_rep = getStringRepresentation(record.product_id.name_get())
+                # else:
+                #     record.string_rep = getStringRepresentation(record.product_id.name_get()) + " {}x".format(record.count)
+            except:
+                pass
+
     product_id = fields.Many2one('pharma_pos.product', string="Item")
-    count = fields.Integer(string="Item/s per Pack")
+    count = fields.Integer(string="Item/s per Pack", default=1)
     bar_code = fields.Char(string="Bar Code")
     is_sold = fields.Boolean(string="Is Sold", default=True)
+    string_rep = fields.Char(string="Name", compute="_get_string_rep", store=True)
 
 # Helper Functions
 
