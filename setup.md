@@ -36,3 +36,17 @@
 
 ## Install Apps
 - backend_theme_v13
+- pharma-pos
+
+## Setup Currency
+- Go to Settings/Users & Companies/Companies/My Company
+- Set currency PHP to active
+
+## Import data
+- Import the excel files to the appropriate menus in this order:
+1. Product Info/Type
+2. Product Info/Size
+3. Product Info/Name
+4. Product Info/Product
+5. Product Info/Pack
+6. Product Info/Price
