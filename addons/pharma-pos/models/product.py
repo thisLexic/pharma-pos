@@ -113,8 +113,12 @@ class Price(models.Model):
     _name = 'pharma_pos.price'
     _description = 'The price of a pack record'
 
+    def _default_currency_id(self):
+         return self.env['res.currency'].search([('name', '=', 'PHP')], limit=1).id
+
     pack_id = fields.Many2one('pharma_pos.pack', string="Pack")
     price = fields.Monetary(string="Price")
+    currency_id = fields.Many2one('res.currency', string="Currency", default=_default_currency_id)
     date_added = fields.Date(string="Date Added", default=date.today())
 
 # Helper Functions
