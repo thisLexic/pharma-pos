@@ -1,6 +1,7 @@
 from datetime import date
 
 from odoo import models, fields, api
+from odoo.exceptions import ValidationError
 
 
 class Product_Name(models.Model):
@@ -113,6 +114,9 @@ class Price(models.Model):
     _name = 'pharma_pos.price'
     _description = 'The price of a pack record'
     _rec_name ='string_rep'
+    _constraints = [
+        ('_check_pack_id_is_sold', 'Only one active price can be assigned to a pack', ['pack_id', 'is_sold']),
+     ]
 
     @api.depends('pack_id', 'price')
     def _get_string_rep(self):
@@ -121,6 +125,16 @@ class Price(models.Model):
                 record.string_rep = getStringRepresentation(record.pack_id) + ": ₱{}".format(record.price)
             except:
                 pass
+
+    @api.constrains('pack_id', 'is_sold')
+    def _check_pack_id_is_sold(self):
+        for record in self:
+            if record.is_sold:
+                # existing_active_prices = self.env['pharma_pos.price'].search([('pack_id', '=', record.pack_id.id), ('is_sold', '=', True)])
+                price_ids = self.env['pharma_pos.price'].search([('pack_id', '=', record.pack_id.id), ('is_sold', '=', True)])
+                if len(price_ids) > 1:
+                    raise ValidationError('Only one active price can be assigned to a pack')
+
 
     def _default_currency_id(self):
          return self.env['res.currency'].search([('name', '=', 'PHP')], limit=1).id
