@@ -37,7 +37,7 @@ class Product_Size(models.Model):
     def _get_string_rep(self):
         for record in self:
             try:
-                record.string_rep = record.size + " {}".format(getStringRepresentation(record.product_type_id.name_get()))
+                record.string_rep = record.size + " {}".format(getStringRepresentation(record.product_type_id))
             except:
                 pass
 
@@ -70,7 +70,7 @@ class Product(models.Model):
     def _get_string_rep(self):
         for record in self:
             try:
-                record.string_rep = getStringRepresentation(record.product_name_id.name_get()) + " " + getStringRepresentation(record.product_size_id.name_get())
+                record.string_rep = getStringRepresentation(record.product_name_id) + " " + getStringRepresentation(record.product_size_id)
             except:
                 pass
 
@@ -95,11 +95,11 @@ class Pack(models.Model):
     def _get_string_rep(self):
         for record in self:
             try:
-                record.string_rep = getStringRepresentation(record.product_id.name_get()) + " {}x".format(record.count)
+                record.string_rep = getStringRepresentation(record.product_id) + " {}x".format(record.count)
                 # if recount.count == 1:
-                #     record.string_rep = getStringRepresentation(record.product_id.name_get())
+                #     record.string_rep = getStringRepresentation(record.product_id)
                 # else:
-                #     record.string_rep = getStringRepresentation(record.product_id.name_get()) + " {}x".format(record.count)
+                #     record.string_rep = getStringRepresentation(record.product_id) + " {}x".format(record.count)
             except:
                 pass
 
@@ -112,4 +112,4 @@ class Pack(models.Model):
 # Helper Functions
 
 def getStringRepresentation(nonString):
-    return nonString[0][1]
+    return nonString.name_get()[0][1]
