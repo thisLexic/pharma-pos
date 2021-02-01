@@ -22,7 +22,7 @@ class Product_Name(models.Model):
     generic_name = fields.Char(string="Generic Name")
     branded_name = fields.Char(string="Branded Name")
     date_added = fields.Date(string="Date Added", default=date.today())
-    string_rep = fields.Char(string="Med", compute="_get_string_rep", store=True)
+    string_rep = fields.Char(string="Name", compute="_get_string_rep", store=True)
 
 
 class Product_Size(models.Model):
@@ -74,7 +74,7 @@ class Product(models.Model):
             except:
                 pass
 
-    product_name_id = fields.Many2one('pharma_pos.product_name', string="Med")
+    product_name_id = fields.Many2one('pharma_pos.product_name', string="Name")
     product_size_id = fields.Many2one('pharma_pos.product_size', string="Size")
     store_code = fields.Char(string="Store Code")
     supplier_code = fields.Char(string="TGP Code")
@@ -88,7 +88,7 @@ class Pack(models.Model):
     _rec_name ='string_rep'
     _sql_constraints = [
         ('pack_bar_code', 'unique(bar_code)', 'This bar code already exists!'),
-        ('pack_product_id_count', 'unique(count, product_id)', 'A product with that number of items per pack already exists!')
+        ('pack_product_id_count', 'unique(count, product_id)', 'A pack with that number of products per pack already exists!')
     ]
 
     @api.depends('product_id', 'count')
@@ -103,8 +103,8 @@ class Pack(models.Model):
             except:
                 pass
 
-    product_id = fields.Many2one('pharma_pos.product', string="Item")
-    count = fields.Integer(string="Item/s per Pack", default=1)
+    product_id = fields.Many2one('pharma_pos.product', string="Product")
+    count = fields.Integer(string="Products per Pack", default=1)
     bar_code = fields.Char(string="Bar Code")
     is_sold = fields.Boolean(string="Is Sold", default=True)
     string_rep = fields.Char(string="Name", compute="_get_string_rep", store=True)

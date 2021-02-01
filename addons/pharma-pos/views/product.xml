@@ -52,7 +52,7 @@
 
 
      <record id="product_action" model="ir.actions.act_window">
-        <field name="name">Meds</field>
+        <field name="name">Product</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">pharma_pos.product</field>
         <field name="view_mode">tree,form</field>
@@ -61,9 +61,9 @@
     <!-- Product Main Menu -->
 
     <!-- <menuitem id="pharma_pos_menu" name="Pharma" sequence="200" action="product_name_action" web_icon="gov_bene_phils,static/sss_icon.png" /> -->
-    <menuitem id="product_main_menu" name="Meds" sequence="50" action="product_action" />
+    <menuitem id="product_main_menu" name="Product Info" sequence="50" action="product_action" />
 
-    <menuitem id="product_menu" parent="product_main_menu" name="Meds" sequence="3" action="product_action" />
+    <menuitem id="product_menu" parent="product_main_menu" name="Product" sequence="3" action="product_action" />
 
 
     <!-- Pack -->
