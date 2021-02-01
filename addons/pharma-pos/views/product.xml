@@ -100,6 +100,16 @@
         </field>
     </record>
 
+    <record id="price_search" model="ir.ui.view">
+        <field name="name">Price Search</field>
+        <field name="model">pharma_pos.price</field>
+        <field name="arch" type="xml">
+            <search string="Search Price">
+                <field name="string_rep"/>
+           </search>
+        </field>
+    </record>
+
      <record id="price_action" model="ir.actions.act_window">
         <field name="name">Price</field>
         <field name="type">ir.actions.act_window</field>
