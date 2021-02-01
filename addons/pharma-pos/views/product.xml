@@ -91,8 +91,7 @@
         <field name="name">Pack Tree</field>
         <field name="model">pharma_pos.pack</field>
         <field name="arch" type="xml">
-            <!-- <tree default_order="generic_name"> -->
-            <tree>
+            <tree default_order="string_rep">
                 <field name="product_id"/>
                 <field name="count"/>
                 <field name="bar_code"/>
