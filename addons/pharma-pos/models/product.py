@@ -8,7 +8,7 @@ class Product_Name(models.Model):
     _description = 'Contains names of products'
     _rec_name ='string_rep'
     _sql_constraints = [
-        ('product_name_generic_name_branded_name_unique', 'unique(string_rep)', 'This product name already exists!')
+        ('product_name_generic_name_branded_name_unique', 'unique(generic_name, branded_name)', 'This product name already exists!')
     ]
 
     @api.depends('generic_name', 'branded_name')
@@ -30,7 +30,7 @@ class Product_Size(models.Model):
     _description = 'Contains sizes of products'
     _rec_name ='string_rep'
     _sql_constraints = [
-        ('product_size_size_unique', 'unique(size)', 'This product size already exists!')
+        ('product_size_size_unique', 'unique(size, product_type_id)', 'This product size already exists!')
     ]
 
     @api.depends('size', 'product_type_id')
@@ -63,7 +63,7 @@ class Product(models.Model):
     _sql_constraints = [
         ('product_store_code_unique', 'unique(store_code)', 'This store code already exists!'),
         ('product_supplier_code_unique', 'unique(supplier_code)', 'This supplier code already exists!'),
-        ('product_product_name_id_product_size_id_unique', 'unique(string_rep)', 'This combination of product name and size already exists!')
+        ('product_product_name_id_product_size_id_unique', 'unique(product_name_id, product_size_id)', 'This combination of product name and size already exists!')
     ]
 
     @api.depends('product_name_id', 'product_size_id')
