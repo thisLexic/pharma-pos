@@ -1,5 +1,120 @@
 <odoo>
 
+    <!-- Price -->
+
+    <record id="price_form" model="ir.ui.view">
+        <field name="name">Price Form</field>
+        <field name="model">pharma_pos.price</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group col="12">
+                        <group col="4" colspan="6">    
+                            <field name="pack_id" colspan="4" required="1"/>
+                            <field name="price" colspan="4" required="1"/>
+                            <field name="currency_id" colspan="4" invisible="1" />
+                            <field name="date_added" colspan="4" readonly="1"/>
+                            <field name="is_sold" colspan="4" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="price_tree" model="ir.ui.view">
+        <field name="name">Price Tree</field>
+        <field name="model">pharma_pos.price</field>
+        <field name="arch" type="xml">
+            <tree default_order="string_rep">
+                <field name="pack_id"/>
+                <field name="price"/>
+                <field name="currency_id" invisible="1" />
+                <field name="date_added"/>
+                <field name="is_sold"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="price_search" model="ir.ui.view">
+        <field name="name">Price Search</field>
+        <field name="model">pharma_pos.price</field>
+        <field name="arch" type="xml">
+            <search string="Search Price">
+                <field name="string_rep"/>
+           </search>
+        </field>
+    </record>
+
+     <record id="price_action" model="ir.actions.act_window">
+        <field name="name">Price</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">pharma_pos.price</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Product Main Menu -->
+
+    <!-- <menuitem id="pharma_pos_menu" name="Pharma" sequence="200" action="product_name_action" web_icon="gov_bene_phils,static/sss_icon.png" /> -->
+    <menuitem id="product_main_menu" name="Product Info" sequence="50" action="price_action" />
+    
+    <menuitem id="price_menu" parent="product_main_menu" name="Price" sequence="1" action="price_action" />
+
+    <!-- Pack -->
+
+    <record id="pack_form" model="ir.ui.view">
+        <field name="name">Pack Form</field>
+        <field name="model">pharma_pos.pack</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group col="12">
+                        <group col="4" colspan="6">    
+                            <field name="product_id" colspan="4" required="1"/>
+                            <field name="count" colspan="4" required="1"/>
+                            <field name="bar_code" colspan="4" required="1"/>
+                            <field name="is_sold" colspan="4" required="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="pack_tree" model="ir.ui.view">
+        <field name="name">Pack Tree</field>
+        <field name="model">pharma_pos.pack</field>
+        <field name="arch" type="xml">
+            <tree default_order="string_rep">
+                <field name="product_id"/>
+                <field name="count"/>
+                <field name="bar_code"/>
+                <field name="is_sold"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="pack_search" model="ir.ui.view">
+        <field name="name">Pack Search</field>
+        <field name="model">pharma_pos.pack</field>
+        <field name="arch" type="xml">
+            <search string="Search Pack">
+                <field name="string_rep"/>
+           </search>
+        </field>
+    </record>
+
+     <record id="pack_action" model="ir.actions.act_window">
+        <field name="name">Pack</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">pharma_pos.pack</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <menuitem id="pack_menu" parent="product_main_menu" name="Pack" sequence="2" action="pack_action" />
+
+
+
     <!-- Product -->
 
     <record id="product_form" model="ir.ui.view">
@@ -57,122 +172,8 @@
         <field name="res_model">pharma_pos.product</field>
         <field name="view_mode">tree,form</field>
     </record>
-    
-    <!-- Product Main Menu -->
-
-    <!-- <menuitem id="pharma_pos_menu" name="Pharma" sequence="200" action="product_name_action" web_icon="gov_bene_phils,static/sss_icon.png" /> -->
-    <menuitem id="product_main_menu" name="Product Info" sequence="50" action="price_action" />
 
     <menuitem id="product_menu" parent="product_main_menu" name="Product" sequence="3" action="product_action" />
-
-
-    <!-- Price -->
-
-    <record id="price_form" model="ir.ui.view">
-        <field name="name">Price Form</field>
-        <field name="model">pharma_pos.price</field>
-        <field name="arch" type="xml">
-            <form>
-                <sheet>
-                    <group col="12">
-                        <group col="4" colspan="6">    
-                            <field name="pack_id" colspan="4" required="1"/>
-                            <field name="price" colspan="4" required="1"/>
-                            <field name="currency_id" colspan="4" invisible="1" />
-                            <field name="date_added" colspan="4" readonly="1"/>
-                            <field name="is_sold" colspan="4" readonly="1"/>
-                        </group>
-                    </group>
-                </sheet>
-            </form>
-        </field>
-    </record>
-
-    <record id="price_tree" model="ir.ui.view">
-        <field name="name">Price Tree</field>
-        <field name="model">pharma_pos.price</field>
-        <field name="arch" type="xml">
-            <tree default_order="string_rep">
-                <field name="pack_id"/>
-                <field name="price"/>
-                <field name="currency_id" invisible="1" />
-                <field name="date_added"/>
-                <field name="is_sold"/>
-            </tree>
-        </field>
-    </record>
-
-    <record id="price_search" model="ir.ui.view">
-        <field name="name">Price Search</field>
-        <field name="model">pharma_pos.price</field>
-        <field name="arch" type="xml">
-            <search string="Search Price">
-                <field name="string_rep"/>
-           </search>
-        </field>
-    </record>
-
-     <record id="price_action" model="ir.actions.act_window">
-        <field name="name">Price</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="res_model">pharma_pos.price</field>
-        <field name="view_mode">tree,form</field>
-    </record>
-    
-    <menuitem id="price_menu" parent="product_main_menu" name="Price" sequence="1" action="price_action" />
-
-    <!-- Pack -->
-
-    <record id="pack_form" model="ir.ui.view">
-        <field name="name">Pack Form</field>
-        <field name="model">pharma_pos.pack</field>
-        <field name="arch" type="xml">
-            <form>
-                <sheet>
-                    <group col="12">
-                        <group col="4" colspan="6">    
-                            <field name="product_id" colspan="4" required="1"/>
-                            <field name="count" colspan="4" required="1"/>
-                            <field name="bar_code" colspan="4" required="1"/>
-                            <field name="is_sold" colspan="4" required="1"/>
-                        </group>
-                    </group>
-                </sheet>
-            </form>
-        </field>
-    </record>
-
-    <record id="pack_tree" model="ir.ui.view">
-        <field name="name">Pack Tree</field>
-        <field name="model">pharma_pos.pack</field>
-        <field name="arch" type="xml">
-            <tree default_order="string_rep">
-                <field name="product_id"/>
-                <field name="count"/>
-                <field name="bar_code"/>
-                <field name="is_sold"/>
-            </tree>
-        </field>
-    </record>
-
-    <record id="pack_search" model="ir.ui.view">
-        <field name="name">Pack Search</field>
-        <field name="model">pharma_pos.pack</field>
-        <field name="arch" type="xml">
-            <search string="Search Pack">
-                <field name="string_rep"/>
-           </search>
-        </field>
-    </record>
-
-     <record id="pack_action" model="ir.actions.act_window">
-        <field name="name">Pack</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="res_model">pharma_pos.pack</field>
-        <field name="view_mode">tree,form</field>
-    </record>
-    
-    <menuitem id="pack_menu" parent="product_main_menu" name="Pack" sequence="2" action="pack_action" />
 
 
     <!-- Product Name -->
