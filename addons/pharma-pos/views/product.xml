@@ -80,6 +80,7 @@
                             <field name="price" colspan="4" required="1"/>
                             <field name="currency_id" colspan="4" invisible="1" />
                             <field name="date_added" colspan="4" readonly="1"/>
+                            <field name="is_sold" colspan="4" readonly="1"/>
                         </group>
                     </group>
                 </sheet>
@@ -96,6 +97,7 @@
                 <field name="price"/>
                 <field name="currency_id" invisible="1" />
                 <field name="date_added"/>
+                <field name="is_sold"/>
             </tree>
         </field>
     </record>
