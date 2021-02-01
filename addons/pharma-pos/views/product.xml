@@ -100,6 +100,16 @@
         </field>
     </record>
 
+    <record id="pack_search" model="ir.ui.view">
+        <field name="name">Pack Search</field>
+        <field name="model">pharma_pos.pack</field>
+        <field name="arch" type="xml">
+            <search string="Search Pack">
+                <field name="string_rep"/>
+           </search>
+        </field>
+    </record>
+
      <record id="pack_action" model="ir.actions.act_window">
         <field name="name">Pack</field>
         <field name="type">ir.actions.act_window</field>
