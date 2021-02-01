@@ -109,6 +109,14 @@ class Pack(models.Model):
     is_sold = fields.Boolean(string="Is Sold", default=True)
     string_rep = fields.Char(string="Name", compute="_get_string_rep", store=True)
 
+class Price(models.Model):
+    _name = 'pharma_pos.price'
+    _description = 'The price of a pack record'
+
+    pack_id = fields.Many2one('pharma_pos.pack', string="Pack")
+    price = fields.Monetary(string="Price")
+    date_added = fields.Date(string="Date Added", default=date.today())
+
 # Helper Functions
 
 def getStringRepresentation(nonString):
