@@ -130,6 +130,7 @@ class Price(models.Model):
     currency_id = fields.Many2one('res.currency', string="Currency", default=_default_currency_id)
     date_added = fields.Date(string="Date Added", default=date.today())
     string_rep = fields.Char(string="Name", compute="_get_string_rep", store=True)
+    is_sold = fields.Boolean(string="Is Sold", default=True)
 
 # Helper Functions
 
