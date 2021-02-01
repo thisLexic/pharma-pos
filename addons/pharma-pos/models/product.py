@@ -112,6 +112,15 @@ class Pack(models.Model):
 class Price(models.Model):
     _name = 'pharma_pos.price'
     _description = 'The price of a pack record'
+    _rec_name ='string_rep'
+
+    @api.depends('pack_id', 'price')
+    def _get_string_rep(self):
+        for record in self:
+            try:
+                record.string_rep = getStringRepresentation(record.pack_id) + ": ₱{}".format(record.price)
+            except:
+                pass
 
     def _default_currency_id(self):
          return self.env['res.currency'].search([('name', '=', 'PHP')], limit=1).id
@@ -120,6 +129,7 @@ class Price(models.Model):
     price = fields.Monetary(string="Price")
     currency_id = fields.Many2one('res.currency', string="Currency", default=_default_currency_id)
     date_added = fields.Date(string="Date Added", default=date.today())
+    string_rep = fields.Char(string="Name", compute="_get_string_rep", store=True)
 
 # Helper Functions
 
