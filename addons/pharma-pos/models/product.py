@@ -141,6 +141,7 @@ class Price(models.Model):
 
     pack_id = fields.Many2one('pharma_pos.pack', string="Pack")
     price = fields.Monetary(string="Price")
+    cost = fields.Monetary(string="Cost")
     currency_id = fields.Many2one('res.currency', string="Currency", default=_default_currency_id)
     date_added = fields.Date(string="Date Added", default=date.today())
     string_rep = fields.Char(string="Name", compute="_get_string_rep", store=True)

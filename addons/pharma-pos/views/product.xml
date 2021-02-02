@@ -12,6 +12,7 @@
                         <group col="4" colspan="6">    
                             <field name="pack_id" colspan="4" required="1"/>
                             <field name="price" colspan="4" required="1"/>
+                            <field name="cost" colspan="4" required="1"/>
                             <field name="currency_id" colspan="4" invisible="1" />
                             <field name="date_added" colspan="4" readonly="1"/>
                             <field name="is_sold" colspan="4" readonly="1"/>
@@ -29,6 +30,7 @@
             <tree default_order="string_rep">
                 <field name="pack_id"/>
                 <field name="price"/>
+                <field name="cost"/>
                 <field name="currency_id" invisible="1" />
                 <field name="date_added"/>
                 <field name="is_sold"/>
