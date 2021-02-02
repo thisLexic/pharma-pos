@@ -37,7 +37,7 @@ class Product_Size(models.Model):
         ('product_size_size_unique', 'unique(size, product_type_id)', 'This product size already exists!')
     ]
 
-    @api.depends('size', 'product_type_id')
+    @api.depends('size', 'product_type_id.consumption_method')
     def _get_string_rep(self):
         for record in self:
             try:
@@ -70,7 +70,7 @@ class Product(models.Model):
         ('product_product_name_id_product_size_id_unique', 'unique(product_name_id, product_size_id)', 'This combination of product name and size already exists!')
     ]
 
-    @api.depends('product_name_id', 'product_size_id')
+    @api.depends('product_name_id.string_rep', 'product_size_id.string_rep')
     def _get_string_rep(self):
         for record in self:
             try:
@@ -95,7 +95,7 @@ class Pack(models.Model):
         ('pack_product_id_count', 'unique(count, product_id)', 'A pack with that number of products per pack already exists!')
     ]
 
-    @api.depends('product_id', 'count')
+    @api.depends('product_id.string_rep', 'count')
     def _get_string_rep(self):
         for record in self:
             try:
@@ -129,7 +129,7 @@ class Price(models.Model):
             except:
                 pass
 
-    @api.constrains('pack_id', 'is_sold')
+    @api.constrains('pack_id.string_rep', 'is_sold')
     def _check_pack_id_is_sold(self):
         for record in self:
             if record.is_sold:
