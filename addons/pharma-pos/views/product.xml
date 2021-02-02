@@ -188,8 +188,8 @@
                 <sheet>
                     <group col="12">
                         <group col="4" colspan="6">    
-                            <field name="generic_name" colspan="4"/>
                             <field name="branded_name" colspan="4" required="1"/>
+                            <field name="generic_name" colspan="4"/>
                             <field name="date_added" colspan="4" readonly="1"/>
                         </group>
                     </group>
@@ -204,8 +204,8 @@
         <field name="arch" type="xml">
             <tree default_order="generic_name">
                 <!-- <field name="name" string="Product Name"/> -->
-                <field name="generic_name"/>
                 <field name="branded_name"/>
+                <field name="generic_name"/>
                 <field name="date_added"/>
             </tree>
         </field>
