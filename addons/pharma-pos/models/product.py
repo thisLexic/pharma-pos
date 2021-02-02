@@ -16,7 +16,10 @@ class Product_Name(models.Model):
     def _get_string_rep(self):
         for record in self:
             try:
-                record.string_rep = record.branded_name + " ({})".format(record.generic_name)
+                if record.generic_name:
+                    record.string_rep = record.branded_name + " ({})".format(record.generic_name)
+                else:
+                    record.string_rep = record.branded_name
             except:
                 pass
 
