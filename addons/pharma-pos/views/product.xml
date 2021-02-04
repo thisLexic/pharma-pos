@@ -15,7 +15,7 @@
                             <field name="cost" colspan="4" required="1"/>
                             <field name="currency_id" colspan="4" invisible="1" />
                             <field name="date_added" colspan="4" readonly="1"/>
-                            <field name="is_sold" colspan="4" readonly="1"/>
+                            <field name="is_sold" colspan="4"/>
                         </group>
                     </group>
                 </sheet>
