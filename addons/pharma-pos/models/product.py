@@ -45,7 +45,7 @@ class Product_Size(models.Model):
             except:
                 pass
 
-    size = fields.Char(string="Product Size")
+    size = fields.Char(string="Size")
     date_added = fields.Date(string="Date Added", default=date.today())
     product_type_id = fields.Many2one('pharma_pos.product_type', string="Type")
     string_rep = fields.Char(string="Size", compute="_get_string_rep", store=True)
