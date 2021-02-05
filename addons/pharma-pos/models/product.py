@@ -15,16 +15,15 @@ class Product_Name(models.Model):
     @api.depends('generic_name', 'branded_name')
     def _get_string_rep(self):
         for record in self:
-            try:
-                if record.generic_name and record.branded_name:
-                    record.string_rep = record.branded_name + " ({})".format(record.generic_name)
-                elif record. generic_name:
-                    record.string_rep = "({})".format(record.generic_name)
-                else:
-                    record.string_rep = record.branded_name
-            except:
-                pass
-
+            if record.generic_name and record.branded_name:
+                record.string_rep = record.branded_name + " ({})".format(record.generic_name)
+            elif record.generic_name:
+                record.string_rep = "({})".format(record.generic_name)
+            elif record.branded_name:
+                record.string_rep = record.branded_name
+            else:
+                record.string_rep = "No Value"
+                    
     generic_name = fields.Char(string="Generic Name")
     branded_name = fields.Char(string="Branded Name")
     date_added = fields.Date(string="Date Added", default=date.today())
@@ -42,10 +41,10 @@ class Product_Size(models.Model):
     @api.depends('size', 'product_type_id.consumption_method')
     def _get_string_rep(self):
         for record in self:
-            try:
+            if record.size and record.product_type_id:
                 record.string_rep = record.size + " {}".format(getStringRepresentation(record.product_type_id))
-            except:
-                pass
+            else:
+                record.string_rep = "No Value"
 
     size = fields.Char(string="Size")
     date_added = fields.Date(string="Date Added", default=date.today())
@@ -75,10 +74,10 @@ class Product(models.Model):
     @api.depends('product_name_id.string_rep', 'product_size_id.string_rep')
     def _get_string_rep(self):
         for record in self:
-            try:
+            if record.product_name_id and record.product_size_id:
                 record.string_rep = getStringRepresentation(record.product_name_id) + " " + getStringRepresentation(record.product_size_id)
-            except:
-                pass
+            else:
+                record.string_rep = "No Value"
 
     product_name_id = fields.Many2one('pharma_pos.product_name', string="Name")
     product_size_id = fields.Many2one('pharma_pos.product_size', string="Size")
@@ -100,14 +99,10 @@ class Pack(models.Model):
     @api.depends('product_id.string_rep', 'count')
     def _get_string_rep(self):
         for record in self:
-            try:
+            if record.product_id and record.count:
                 record.string_rep = getStringRepresentation(record.product_id) + " {}x".format(record.count)
-                # if recount.count == 1:
-                #     record.string_rep = getStringRepresentation(record.product_id)
-                # else:
-                #     record.string_rep = getStringRepresentation(record.product_id) + " {}x".format(record.count)
-            except:
-                pass
+            else:
+                record.string_rep = "No Value"
 
     product_id = fields.Many2one('pharma_pos.product', string="Product")
     count = fields.Integer(string="Products per Pack", default=1)
@@ -126,10 +121,10 @@ class Price(models.Model):
     @api.depends('pack_id', 'price')
     def _get_string_rep(self):
         for record in self:
-            try:
+            if record.pack_id and record.price:
                 record.string_rep = getStringRepresentation(record.pack_id) + ": ₱{}".format(record.price)
-            except:
-                pass
+            else:
+                record.string_rep = "No Value"
 
     @api.constrains('pack_id.string_rep', 'is_sold')
     def _check_pack_id_is_sold(self):
