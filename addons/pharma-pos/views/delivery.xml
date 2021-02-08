@@ -47,6 +47,7 @@
                 <field name="batch_number"/>
                 <field name="string_rep"/>
            </search>
+           <filter name="expiring" string="Expiring" domain="[('expiration_date','&lt;',((context_today()+datetime.timedelta(days=600)).strftime('%Y-%m-%d'))), ('left_count', '!=', 0)]" help="Expiring Stock"/>
         </field>
     </record>
 
