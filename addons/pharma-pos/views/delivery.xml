@@ -38,6 +38,18 @@
         </field>
     </record>
 
+    <record id="batch_search" model="ir.ui.view">
+        <field name="name">Batch Search</field>
+        <field name="model">pharma_pos.batch</field>
+        <field name="arch" type="xml">
+            <search string="Search Batch">
+                <field name="expiration_date"/>
+                <field name="batch_number"/>
+                <field name="string_rep"/>
+           </search>
+        </field>
+    </record>
+
      <record id="batch_action" model="ir.actions.act_window">
         <field name="name">Batch</field>
         <field name="type">ir.actions.act_window</field>
