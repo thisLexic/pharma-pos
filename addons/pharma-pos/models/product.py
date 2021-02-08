@@ -3,6 +3,8 @@ from datetime import date
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
+from .tools import getStringRepresentation
+
 
 class Product_Name(models.Model):
     _name = 'pharma_pos.product_name'
@@ -147,7 +149,3 @@ class Price(models.Model):
     string_rep = fields.Char(string="Name", compute="_get_string_rep", store=True)
     is_sold = fields.Boolean(string="Is Sold", default=True)
 
-# Helper Functions
-
-def getStringRepresentation(nonString):
-    return nonString.name_get()[0][1]
