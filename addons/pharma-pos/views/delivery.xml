@@ -38,7 +38,7 @@
 
     <!-- Delivery Main Menu -->
 
-    <menuitem id="delivery_main_menu" name="Delivery" sequence="49" action="batch_action" />
+    <menuitem id="delivery_main_menu" name="Delivery Info" sequence="49" action="batch_action" />
     
     <menuitem id="batch_menu" parent="delivery_main_menu" name="Batch" sequence="2" action="batch_action" />
 
