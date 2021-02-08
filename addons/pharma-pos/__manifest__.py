@@ -19,6 +19,7 @@
         'security/ir.model.access.csv',
 
         'views/product.xml',
+        'views/delivery.xml',
     ],
     'demo': [
         'demo/product.xml',
