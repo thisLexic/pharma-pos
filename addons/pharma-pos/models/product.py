@@ -118,7 +118,7 @@ class Price(models.Model):
         ('_check_pack_id_is_sold', 'Only one active price can be assigned to a pack', ['pack_id', 'is_sold']),
      ]
 
-    @api.depends('pack_id', 'price')
+    @api.depends('pack_id.string_rep', 'price')
     def _get_string_rep(self):
         for record in self:
             if record.pack_id and record.price:
