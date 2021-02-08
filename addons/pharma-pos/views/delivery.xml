@@ -11,6 +11,11 @@
                     <group col="12">
                         <group col="4" colspan="6">    
                             <field name="price_id" colspan="4" required="1"/>
+                            <field name="batch_number" colspan="4" required="1"/>
+                            <field name="bought_count" colspan="4" required="1"/>
+                            <field name="sold_count" colspan="4" required="1"/>
+                            <field name="left_count" colspan="4" required="1"/>
+                            <field name="expiration_date" colspan="4" required="1"/>
                         </group>
                     </group>
                 </sheet>
@@ -25,6 +30,11 @@
             <!-- <tree default_order="string_rep"> -->
             <tree>
                 <field name="price_id"/>
+                <field name="batch_number"/>
+                <field name="bought_count"/>
+                <field name="sold_count"/>
+                <field name="left_count"/>
+                <field name="expiration_date"/>
             </tree>
         </field>
     </record>
