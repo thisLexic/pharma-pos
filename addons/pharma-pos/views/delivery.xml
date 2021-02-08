@@ -27,8 +27,7 @@
         <field name="name">Batch Tree</field>
         <field name="model">pharma_pos.batch</field>
         <field name="arch" type="xml">
-            <!-- <tree default_order="string_rep"> -->
-            <tree>
+            <tree default_order="string_rep">
                 <field name="price_id"/>
                 <field name="batch_number"/>
                 <field name="bought_count"/>
