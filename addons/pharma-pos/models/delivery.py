@@ -16,9 +16,16 @@ class Batch(models.Model):
                 record.string_rep = "No Value"
 
     price_id = fields.Many2one('pharma_pos.price', string="Product", domain="[('is_sold', '=', True)]")
+    delivery_id = fields.Many2one('pharma_pos.delivery', string="Delivery")
     batch_number = fields.Char(string="Batch Number")
     bought_count = fields.Integer(string="Packs Bought")
     sold_count = fields.Integer(string="Packs Sold")
     left_count = fields.Integer(string="Packs Left")
     expiration_date = fields.Date(string="Expiration Date")
     string_rep = fields.Char(string="Name", compute="_get_string_rep", store=True)
+
+class Delivery(models.Model):
+    _name = 'pharma_pos.delivery'
+    _description = 'Contains one or many batches which go from one company to another company'
+
+    batch_ids = fields.One2many('pharma_pos.batch', 'delivery_id', string='Batches')
