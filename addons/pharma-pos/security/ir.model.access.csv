@@ -8,3 +8,4 @@ access_pharma_pos_pack,pharma_pos.pack,model_pharma_pos_pack,base.group_user,1,1
 access_pharma_pos_price,pharma_pos.price,model_pharma_pos_price,base.group_user,1,1,1,1
 
 access_pharma_pos_batch,pharma_pos.batch,model_pharma_pos_batch,base.group_user,1,1,1,1
+access_pharma_pos_delivery,pharma_pos.delivery,model_pharma_pos_delivery,base.group_user,1,1,1,1
