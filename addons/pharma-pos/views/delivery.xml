@@ -1,5 +1,47 @@
 <odoo>
 
+    <!-- Delivery -->
+
+    <record id="delivery_form" model="ir.ui.view">
+        <field name="name">Delivery Form</field>
+        <field name="model">pharma_pos.delivery</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group col="12">
+                        <group col="12" colspan="12">    
+                            <field name="batch_ids" colspan="4" required="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="delivery_tree" model="ir.ui.view">
+        <field name="name">Delivery Tree</field>
+        <field name="model">pharma_pos.delivery</field>
+        <field name="arch" type="xml">
+            <!-- <tree default_order="string_rep"> -->
+            <tree>
+                <field name="batch_ids"/>
+            </tree>
+        </field>
+    </record>
+
+     <record id="delivery_action" model="ir.actions.act_window">
+        <field name="name">Delivery</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">pharma_pos.delivery</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Delivery Main Menu -->
+
+    <menuitem id="delivery_main_menu" name="Delivery Info" sequence="49" action="delivery_action" />
+    
+    <menuitem id="delivery_menu" parent="delivery_main_menu" name="Delivery" sequence="1" action="delivery_action" />
+
     <!-- Batch -->
 
     <record id="batch_form" model="ir.ui.view">
@@ -57,10 +99,6 @@
         <field name="res_model">pharma_pos.batch</field>
         <field name="view_mode">tree,form</field>
     </record>
-
-    <!-- Delivery Main Menu -->
-
-    <menuitem id="delivery_main_menu" name="Delivery Info" sequence="49" action="batch_action" />
     
     <menuitem id="batch_menu" parent="delivery_main_menu" name="Batch" sequence="2" action="batch_action" />
 
