@@ -10,7 +10,7 @@
                 <sheet>
                     <group col="12">
                         <group col="12" colspan="12">    
-                            <field name="batch_ids" colspan="4" required="1"/>
+                            <field name="batch_ids" colspan="12" required="1"/>
                         </group>
                     </group>
                 </sheet>
