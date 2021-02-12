@@ -27,6 +27,7 @@ class Batch(models.Model):
 class Delivery(models.Model):
     _name = 'pharma_pos.delivery'
     _description = 'Contains one or many batches which go from one company to another company'
+    _rec_name ='invoice_date'
 
     batch_ids = fields.One2many('pharma_pos.batch', 'delivery_id', string='Batches')
     to_company_id = fields.Many2one('res.company', string="To")
