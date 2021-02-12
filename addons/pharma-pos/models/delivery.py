@@ -29,3 +29,5 @@ class Delivery(models.Model):
     _description = 'Contains one or many batches which go from one company to another company'
 
     batch_ids = fields.One2many('pharma_pos.batch', 'delivery_id', string='Batches')
+    code = fields.Char(string="Code")
+    invoice_date = fields.Date(string="Invoice Date")
