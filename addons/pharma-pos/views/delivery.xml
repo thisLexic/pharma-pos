@@ -10,10 +10,14 @@
                 <sheet>
                     <group col="12">
                         <group col="4" colspan="4">    
+                            <field name="from_company_id" colspan="4" required="1"/>
+                            <field name="to_company_id" colspan="4" required="1"/>
+                        </group>
+                        <group col="4" colspan="4">    
                             <field name="invoice_date" colspan="4" required="1"/>
                             <field name="code" colspan="4" required="1"/>
                         </group>
-                        <group col="4" colspan="8">
+                        <group col="4" colspan="4">
                         </group>
                         <group col="12" colspan="12">    
                             <field name="batch_ids" colspan="12" required="1"/>
@@ -32,6 +36,8 @@
             <tree>
                 <field name="invoice_date"/>
                 <field name="code"/>
+                <field name="from_company_id"/>
+                <field name="to_company_id"/>
                 <field name="batch_ids"/>
             </tree>
         </field>
