@@ -6,6 +6,9 @@ class Batch(models.Model):
     _name = 'pharma_pos.batch'
     _description = 'Contains a batch of packs with the same prices'
     _rec_name ='string_rep'
+    _sql_constraints = [
+        ('price_id_delivery_id_expiration_date_batch_number_unique', 'unique(price_id, delivery_id, expiration_date, batch_number)', 'This product already has an entry for this delivery. Please use that one instead of making a new one')
+    ]
 
     @api.depends('price_id.string_rep', 'expiration_date', 'batch_number')
     def _get_string_rep(self):
