@@ -28,6 +28,9 @@ class Batch(models.Model):
     expiration_date = fields.Date(string="Expiration Date")
     string_rep = fields.Char(string="Name", compute="_get_string_rep", store=True)
 
+    def unbox(self):
+        raise Warning(self.string_rep)
+
 class Delivery(models.Model):
     _name = 'pharma_pos.delivery'
     _description = 'Contains one or many batches which go from one company to another company'
