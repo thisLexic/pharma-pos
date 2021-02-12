@@ -7,11 +7,11 @@ class Batch(models.Model):
     _description = 'Contains a batch of packs with the same prices'
     _rec_name ='string_rep'
 
-    @api.depends('price_id.string_rep', 'expiration_date')
+    @api.depends('price_id.string_rep', 'expiration_date', 'batch_number')
     def _get_string_rep(self):
         for record in self:
             if record.price_id and record.expiration_date:
-                record.string_rep = getStringRepresentation(record.price_id) + " ({})".format(record.expiration_date)
+                record.string_rep = getStringRepresentation(record.price_id) + " ({} | ".format(record.expiration_date) + "{})".format(record.batch_number)
             else:
                 record.string_rep = "No Value"
 
