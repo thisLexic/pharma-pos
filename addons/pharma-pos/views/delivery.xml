@@ -42,6 +42,17 @@
         </field>
     </record>
 
+    <record id="delivery_search" model="ir.ui.view">
+        <field name="name">Delivery Search</field>
+        <field name="model">pharma_pos.delivery</field>
+        <field name="arch" type="xml">
+            <search string="Search Delivery">
+                <field name="invoice_date"/>
+                <field name="code"/>
+           </search>
+        </field>
+    </record>
+
      <record id="delivery_action" model="ir.actions.act_window">
         <field name="name">Delivery</field>
         <field name="type">ir.actions.act_window</field>
