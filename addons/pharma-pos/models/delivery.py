@@ -24,6 +24,7 @@ class Batch(models.Model):
     bought_count = fields.Integer(string="Packs Bought")
     sold_count = fields.Integer(string="Packs Sold")
     left_count = fields.Integer(string="Packs Left")
+    unboxed_count = fields.Integer(string="Packs Unboxed")
     expiration_date = fields.Date(string="Expiration Date")
     string_rep = fields.Char(string="Name", compute="_get_string_rep", store=True)
 
