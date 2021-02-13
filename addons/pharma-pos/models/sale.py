@@ -35,4 +35,10 @@ class Pos(models.Model):
     _name = 'pharma_pos.pos'
     _description = 'Sell products by bulk'
 
+    def _default_currency_id(self):
+        return self.env['res.currency'].search([('name', '=', 'PHP')], limit=1).id
+
     sale_ids = fields.One2many('pharma_pos.sale', 'pos_id', string='Sales')
+    currency_id = fields.Many2one('res.currency', string="Currency", default=_default_currency_id)
+    datetime = fields.Datetime(string="Time", default=fields.Datetime.now())
+    is_senior = fields.Boolean(string="Senior?", default=False)
