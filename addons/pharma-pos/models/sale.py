@@ -3,6 +3,7 @@ from odoo import models, fields, api
 class Sale(models.Model):
     _name = 'pharma_pos.sale'
     _description = 'Sell products one at a time'
+    _rec_name = 'price_total'
 
     def _default_currency_id(self):
         return self.env['res.currency'].search([('name', '=', 'PHP')], limit=1).id
