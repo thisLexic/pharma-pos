@@ -34,8 +34,6 @@ class Batch(models.Model):
         if pack_count <= 1:
             raise ValidationError('You can only unbox packs with more than one item in them! This only has one item. Try another item!')
 
-        self.unboxed_count = self.unboxed_count + 1
-
         price_ids = self.env['pharma_pos.price'].search([
             ('pack_id.product_id', '=', self.price_id.pack_id.product_id.id),
             ('is_sold', '=', True),
@@ -65,6 +63,8 @@ class Batch(models.Model):
             'unboxed_count': unboxed_count,
             'expiration_date': expiration_date,
         })
+
+        self.unboxed_count = self.unboxed_count + 1
 
 class Delivery(models.Model):
     _name = 'pharma_pos.delivery'
