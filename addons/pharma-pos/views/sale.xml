@@ -11,7 +11,6 @@
                     <group col="12">
                         <group col="4" colspan="4">
                             <field name="datetime" colspan="4" readonly="1"/>
-                            <field name="currency_id" colspan="4" invisible="1" />
                         </group>
                         <group col="4" colspan="4">
                             <field name="is_senior" colspan="4" />
@@ -23,6 +22,7 @@
                         </group>
                         <group col="4" colspan="4">
                             <field name="price_total" colspan="4" />
+                            <field name="currency_id" colspan="4" invisible="1" />
                         </group>
                     </group>
                 </sheet>
@@ -91,6 +91,7 @@
                 <field name="count"/>
                 <field name="price"/>
                 <field name="price_total"/>
+                <field name="currency_id" invisible="1" />
             </tree>
         </field>
     </record>
