@@ -46,27 +46,42 @@ class Batch(models.Model):
         elif len(price_ids) == 0:
             raise ValidationError('Cannot be unboxed because of a missing price entry with a count of 1 that matches this product')
         else:
-            price = price_ids[0].id
+            price_id = price_ids[0].id
 
-        # set all appropriate values for the new/edited record
-        price_id = price
-        batch_number = self.batch_number
-        bought_count = pack_count
-        sold_count = 0
-        left_count = pack_count
-        unboxed_count = 0
-        expiration_date = self.expiration_date
+        # attempt to find a Batch record that already has the appropriate values
+        batch_ids = self.env['pharma_pos.batch'].search([
+            ('price_id', '=', price_id),
+            ('batch_number', '=', self.batch_number),
+            ('expiration_date', '=', self.expiration_date)
+        ])
 
-        # create the record
-        batch_obj = self.env['pharma_pos.batch'].create({
-            'price_id': price_id,
-            'batch_number': batch_number,
-            'bought_count': bought_count,
-            'sold_count': sold_count,
-            'left_count': left_count,
-            'unboxed_count': unboxed_count,
-            'expiration_date': expiration_date,
-        })
+        # determine whether to add or edit a Batch record
+        if len(batch_ids) == 0:
+            # set all appropriate values for the new record
+            price_id = price_id
+            batch_number = self.batch_number
+            bought_count = pack_count
+            sold_count = 0
+            left_count = pack_count
+            unboxed_count = 0
+            expiration_date = self.expiration_date
+
+            # create the record
+            batch_obj = self.env['pharma_pos.batch'].create({
+                'price_id': price_id,
+                'batch_number': batch_number,
+                'bought_count': bought_count,
+                'sold_count': sold_count,
+                'left_count': left_count,
+                'unboxed_count': unboxed_count,
+                'expiration_date': expiration_date,
+            })
+
+        elif len(batch_ids) == 1:
+            # edit the existing batch record
+            batch_record = batch_ids[0]
+            batch_record.bought_count += pack_count
+            unboxed_count = 0
 
         # increment the unboxed_count of the unboxed Batch record
         self.unboxed_count = self.unboxed_count + 1
