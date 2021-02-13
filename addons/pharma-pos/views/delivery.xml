@@ -82,6 +82,7 @@
                             <field name="sold_count" colspan="4" required="1"/>
                             <field name="left_count" colspan="4" required="1"/>
                             <field name="unboxed_count" colspan="4" readonly="1"/>
+                            <field name="repriced_count" colspan="4" readonly="1"/>
                             <field name="expiration_date" colspan="4" required="1"/>
                         </group>
                     </group>
@@ -101,6 +102,7 @@
                 <field name="sold_count"/>
                 <field name="left_count"/>
                 <field name="unboxed_count"/>
+                <field name="repriced_count"/>
                 <field name="expiration_date"/>
             </tree>
         </field>
