@@ -34,8 +34,7 @@
         <field name="name">Pos Tree</field>
         <field name="model">pharma_pos.pos</field>
         <field name="arch" type="xml">
-            <!-- <tree default_order="invoice_date"> -->
-            <tree>
+            <tree default_order="datetime">
                 <field name="datetime"/>
                 <field name="price_total"/>
                 <field name="sale_ids"/>
