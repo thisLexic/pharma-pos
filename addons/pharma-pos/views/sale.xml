@@ -21,6 +21,9 @@
                         <group col="12" colspan="12">    
                             <field name="sale_ids" colspan="12" required="1"/>
                         </group>
+                        <group col="4" colspan="4">
+                            <field name="price_total" colspan="4" />
+                        </group>
                     </group>
                 </sheet>
             </form>
@@ -34,6 +37,7 @@
             <!-- <tree default_order="invoice_date"> -->
             <tree>
                 <field name="datetime"/>
+                <field name="price_total"/>
                 <field name="sale_ids"/>
                 <field name="currency_id" invisible="1" />
             </tree>
