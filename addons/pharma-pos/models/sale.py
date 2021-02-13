@@ -34,6 +34,7 @@ class Sale(models.Model):
 class Pos(models.Model):
     _name = 'pharma_pos.pos'
     _description = 'Sell products by bulk'
+    _rec_name = 'price_total'
 
     def _default_currency_id(self):
         return self.env['res.currency'].search([('name', '=', 'PHP')], limit=1).id
