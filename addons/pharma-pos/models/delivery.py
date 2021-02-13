@@ -19,12 +19,33 @@ class Batch(models.Model):
             else:
                 record.string_rep = "No Value"
 
+    @api.depends('sale_ids.count')
+    def _get_sold_count(self):
+        for record in self:
+            if record.sale_ids:
+                count = 0
+                for sale in record.sale_ids:
+                    count += sale.count
+                record.sold_count = count
+            else:
+                record.sold_count = 0
+
+    @api.depends('bought_count', 'sold_count', 'unboxed_count', 'repriced_count')
+    def _get_left_count(self):
+        for record in self:
+            bought_count = record.bought_count
+            sold_count = record.sold_count
+            unboxed_count = record.unboxed_count
+            repriced_count = record.repriced_count
+            record.left_count = bought_count - sold_count - unboxed_count - repriced_count
+
+    sale_ids = fields.One2many('pharma_pos.sale', 'batch_id', string='Sales')
     price_id = fields.Many2one('pharma_pos.price', string="Product", domain="[('is_sold', '=', True)]")
     delivery_id = fields.Many2one('pharma_pos.delivery', string="Delivery")
     batch_number = fields.Char(string="Batch Number")
     bought_count = fields.Integer(string="Packs Bought")
-    sold_count = fields.Integer(string="Packs Sold")
-    left_count = fields.Integer(string="Packs Left")
+    sold_count = fields.Integer(string="Packs Sold", compute="_get_sold_count", store=True)
+    left_count = fields.Integer(string="Packs Left", compute="_get_left_count", store=True)
     unboxed_count = fields.Integer(string="Packs Unboxed")
     repriced_count = fields.Integer(string="Packs Repriced")
     expiration_date = fields.Date(string="Expiration Date")
