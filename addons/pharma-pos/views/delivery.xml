@@ -132,6 +132,15 @@
         <field name="code">action = records.unbox()</field>
     </record>
 
+    <record id="batch_reprice_action_server" model="ir.actions.server">
+        <field name="name">Update Price</field>
+        <field name="model_id" ref="pharma-pos.model_pharma_pos_batch"/>
+        <field name="binding_model_id" ref="pharma-pos.model_pharma_pos_batch"/>
+        <field name="binding_view_types">form</field>
+        <field name="state">code</field>
+        <field name="code">action = records.reprice()</field>
+    </record>
+
      <record id="batch_action" model="ir.actions.act_window">
         <field name="name">Batch</field>
         <field name="type">ir.actions.act_window</field>

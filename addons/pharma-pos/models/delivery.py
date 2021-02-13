@@ -87,6 +87,9 @@ class Batch(models.Model):
         # increment the unboxed_count of the unboxed Batch record
         self.unboxed_count = self.unboxed_count + 1
 
+    def reprice(self):
+        raise Warning('Test!')
+
 class Delivery(models.Model):
     _name = 'pharma_pos.delivery'
     _description = 'Contains one or many batches which go from one company to another company'
