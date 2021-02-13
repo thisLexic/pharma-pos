@@ -57,6 +57,10 @@ class Batch(models.Model):
         if pack_count <= 1:
             raise ValidationError('You can only unbox packs with more than one item in them! This only has one item. Try another item!')
 
+        # validate that there are still stocks left
+        if self.left_count <= 0:
+            raise ValidationError('There are no more stocks left for this product!')
+
         # find the price
         price_ids = self.env['pharma_pos.price'].search([
             ('pack_id.product_id', '=', self.price_id.pack_id.product_id.id),
