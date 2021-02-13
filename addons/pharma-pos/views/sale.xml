@@ -9,8 +9,14 @@
             <form>
                 <sheet>
                     <group col="12">
-                        <group col="4" colspan="4">    
+                        <group col="6" colspan="6">    
                             <field name="batch_id" colspan="4" required="1" options="{'no_open': True, 'no_create_edit': True, 'no_create': True}"/>
+                            <field name="count" colspan="4" required="1"/>
+                        </group>
+                        <group col="6" colspan="6">
+                            <field name="currency_id" colspan="4" invisible="1" />
+                            <field name="price" colspan="4" readonly="1"/>
+                            <field name="price_total" colspan="4" readonly="1"/>
                         </group>
                     </group>
                 </sheet>
@@ -25,6 +31,9 @@
             <!-- <tree default_order="invoice_date"> -->
             <tree>
                 <field name="batch_id"/>
+                <field name="count"/>
+                <field name="price"/>
+                <field name="price_total"/>
             </tree>
         </field>
     </record>
