@@ -82,6 +82,7 @@
                             <field name="expiration_date" colspan="6" required="1"/>
                         </group>
                         <group col="6" colspan="6">  
+                            <field name="delivery_id" colspan="6" readonly="1"/>
                             <field name="sold_count" colspan="6" readonly="1"/>
                             <field name="left_count" colspan="6" readonly="1"/>
                             <field name="unboxed_count" colspan="6" readonly="1"/>
