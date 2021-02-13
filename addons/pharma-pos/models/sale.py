@@ -25,7 +25,7 @@ class Sale(models.Model):
                 record.price_total = 0.0
 
     pos_id = fields.Many2one('pharma_pos.pos', string="Pos")
-    batch_id = fields.Many2one('pharma_pos.batch', string="Product")
+    batch_id = fields.Many2one('pharma_pos.batch', string="Product", domain="[('left_count', '!=', 0)]")
     currency_id = fields.Many2one('res.currency', string="Currency", default=_default_currency_id)
     price = fields.Monetary(string="Price", compute="_get_price", store=True)
     price_total = fields.Monetary(string="Price Total", compute="_get_price_total", store=True)
