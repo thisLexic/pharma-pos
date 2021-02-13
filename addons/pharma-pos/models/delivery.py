@@ -65,6 +65,7 @@ class Batch(models.Model):
             sold_count = 0
             left_count = pack_count
             unboxed_count = 0
+            repriced_count = 0
             expiration_date = self.expiration_date
 
             # create the record
@@ -75,6 +76,7 @@ class Batch(models.Model):
                 'sold_count': sold_count,
                 'left_count': left_count,
                 'unboxed_count': unboxed_count,
+                'repriced_count': repriced_count,
                 'expiration_date': expiration_date,
             })
 
@@ -88,7 +90,46 @@ class Batch(models.Model):
         self.unboxed_count = self.unboxed_count + 1
 
     def reprice(self):
-        raise Warning('Test!')
+        # find the updated price
+        price_ids = self.env['pharma_pos.price'].search([
+            ('pack_id', '=', self.price_id.pack_id.id),
+            ('is_sold', '=', True)
+        ])
+        if len(price_ids) > 1:
+            raise ValidationError('There is more than one active price for this product')
+        elif len(price_ids) == 0:
+            raise ValidationError('There is no active price for this product')
+        else:
+            price = price_ids[0]
+
+        # prevent updates for the same price
+        if price == self.price_id:
+            raise ValidationError('The product price is already updated')
+
+        # set all appropriate values for the new record
+        price_id = price.id
+        batch_number = self.batch_number
+        bought_count = self.left_count
+        sold_count = 0
+        left_count = self.left_count
+        unboxed_count = 0
+        repriced_count = 0
+        expiration_date = self.expiration_date
+
+        # create the record
+        batch_obj = self.env['pharma_pos.batch'].create({
+            'price_id': price_id,
+            'batch_number': batch_number,
+            'bought_count': bought_count,
+            'sold_count': sold_count,
+            'left_count': left_count,
+            'unboxed_count': unboxed_count,
+            'repriced_count': repriced_count,
+            'expiration_date': expiration_date,
+        })
+
+        self.repriced_count = self.left_count
+        
 
 class Delivery(models.Model):
     _name = 'pharma_pos.delivery'
