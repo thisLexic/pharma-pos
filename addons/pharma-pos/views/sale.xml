@@ -70,6 +70,7 @@
                             <field name="count" colspan="4" required="1"/>
                         </group>
                         <group col="6" colspan="6">
+                            <field name="pos_id" colspan="4" readonly="1"/>
                             <field name="currency_id" colspan="4" invisible="1" />
                             <field name="price" colspan="4" readonly="1"/>
                             <field name="price_total" colspan="4" readonly="1"/>
