@@ -1,0 +1,44 @@
+<odoo>
+
+    <!-- Sale -->
+
+    <record id="sale_form" model="ir.ui.view">
+        <field name="name">Sale Form</field>
+        <field name="model">pharma_pos.sale</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group col="12">
+                        <group col="4" colspan="4">    
+                            <field name="batch_id" colspan="4" required="1" options="{'no_open': True, 'no_create_edit': True, 'no_create': True}"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="sale_tree" model="ir.ui.view">
+        <field name="name">Sale Tree</field>
+        <field name="model">pharma_pos.sale</field>
+        <field name="arch" type="xml">
+            <!-- <tree default_order="invoice_date"> -->
+            <tree>
+                <field name="batch_id"/>
+            </tree>
+        </field>
+    </record>
+
+     <record id="sale_action" model="ir.actions.act_window">
+        <field name="name">Sale</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">pharma_pos.sale</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Sale Main Menu -->
+
+    <menuitem id="sale_main_menu" name="Sale Info" sequence="48" action="sale_action" />
+    
+    <menuitem id="sale_menu" parent="sale_main_menu" name="Sale" sequence="1" action="sale_action" />
+</odoo>

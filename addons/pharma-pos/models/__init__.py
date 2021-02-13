@@ -1,1 +1,1 @@
-from . import product, delivery
+from . import product, delivery, sale

@@ -20,6 +20,7 @@
 
         'views/product.xml',
         'views/delivery.xml',
+        'views/sale.xml',
     ],
     'demo': [
         'demo/product.xml',
