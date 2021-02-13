@@ -29,12 +29,12 @@ class Batch(models.Model):
     expiration_date = fields.Date(string="Expiration Date")
     string_rep = fields.Char(string="Name", compute="_get_string_rep", store=True)
 
-    def unbox(self):
-        self.unboxed_count = self.unboxed_count + 1
-        
+    def unbox(self):   
         pack_count = self.price_id.pack_id.count
         if pack_count <= 1:
             raise ValidationError('You can only unbox packs with more than one item in them! This only has one item. Try another item!')
+
+        self.unboxed_count = self.unboxed_count + 1
 
         price_ids = self.env['pharma_pos.price'].search([
             ('pack_id.product_id', '=', self.price_id.pack_id.product_id.id),
