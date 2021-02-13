@@ -1,5 +1,50 @@
 <odoo>
 
+    <!-- Pos -->
+
+    <record id="pos_form" model="ir.ui.view">
+        <field name="name">Pos Form</field>
+        <field name="model">pharma_pos.pos</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group col="12">
+                        <group col="12" colspan="12">    
+                            <field name="sale_ids" colspan="12" required="1"/>
+                        </group>
+                        <group col="6" colspan="6">
+
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="pos_tree" model="ir.ui.view">
+        <field name="name">Pos Tree</field>
+        <field name="model">pharma_pos.pos</field>
+        <field name="arch" type="xml">
+            <!-- <tree default_order="invoice_date"> -->
+            <tree>
+                <field name="sale_ids"/>
+            </tree>
+        </field>
+    </record>
+
+     <record id="pos_action" model="ir.actions.act_window">
+        <field name="name">Pos</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">pharma_pos.pos</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Sale Main Menu -->
+
+    <menuitem id="sale_main_menu" name="Sale Info" sequence="48" action="pos_action" />
+    
+    <menuitem id="pos_menu" parent="sale_main_menu" name="Pos" sequence="1" action="pos_action" />
+
     <!-- Sale -->
 
     <record id="sale_form" model="ir.ui.view">
@@ -45,9 +90,5 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <!-- Sale Main Menu -->
-
-    <menuitem id="sale_main_menu" name="Sale Info" sequence="48" action="sale_action" />
-    
-    <menuitem id="sale_menu" parent="sale_main_menu" name="Sale" sequence="1" action="sale_action" />
+    <menuitem id="sale_menu" parent="sale_main_menu" name="Sale" sequence="2" action="sale_action" />
 </odoo>

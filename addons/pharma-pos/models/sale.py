@@ -24,8 +24,15 @@ class Sale(models.Model):
             else:
                 record.price_total = 0.0
 
+    pos_id = fields.Many2one('pharma_pos.pos', string="Pos")
     batch_id = fields.Many2one('pharma_pos.batch', string="Product")
     currency_id = fields.Many2one('res.currency', string="Currency", default=_default_currency_id)
     price = fields.Monetary(string="Price", compute="_get_price", store=True)
     price_total = fields.Monetary(string="Price Total", compute="_get_price_total", store=True)
     count = fields.Integer(string="Count", default=1)
+
+class Pos(models.Model):
+    _name = 'pharma_pos.pos'
+    _description = 'Sell products by bulk'
+
+    sale_ids = fields.One2many('pharma_pos.sale', 'pos_id', string='Sales')
