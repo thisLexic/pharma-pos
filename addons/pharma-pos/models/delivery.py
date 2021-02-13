@@ -30,10 +30,12 @@ class Batch(models.Model):
     string_rep = fields.Char(string="Name", compute="_get_string_rep", store=True)
 
     def unbox(self):   
+        # validate that the user is not unboxing a pack with 1 product in it
         pack_count = self.price_id.pack_id.count
         if pack_count <= 1:
             raise ValidationError('You can only unbox packs with more than one item in them! This only has one item. Try another item!')
 
+        # find the price
         price_ids = self.env['pharma_pos.price'].search([
             ('pack_id.product_id', '=', self.price_id.pack_id.product_id.id),
             ('is_sold', '=', True),
@@ -46,6 +48,7 @@ class Batch(models.Model):
         else:
             price = price_ids[0].id
 
+        # set all appropriate values for the new/edited record
         price_id = price
         batch_number = self.batch_number
         bought_count = pack_count
@@ -54,6 +57,7 @@ class Batch(models.Model):
         unboxed_count = 0
         expiration_date = self.expiration_date
 
+        # create the record
         batch_obj = self.env['pharma_pos.batch'].create({
             'price_id': price_id,
             'batch_number': batch_number,
@@ -64,6 +68,7 @@ class Batch(models.Model):
             'expiration_date': expiration_date,
         })
 
+        # increment the unboxed_count of the unboxed Batch record
         self.unboxed_count = self.unboxed_count + 1
 
 class Delivery(models.Model):
