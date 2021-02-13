@@ -1,4 +1,5 @@
 from odoo import models, fields, api
+from odoo.exceptions import ValidationError
 
 from .tools import getStringRepresentation
 
@@ -29,7 +30,41 @@ class Batch(models.Model):
     string_rep = fields.Char(string="Name", compute="_get_string_rep", store=True)
 
     def unbox(self):
-        raise Warning(self.string_rep)
+        self.unboxed_count = self.unboxed_count + 1
+        
+        pack_count = self.price_id.pack_id.count
+        if pack_count <= 1:
+            raise ValidationError('You can only unbox packs with more than one item in them! This only has one item. Try another item!')
+
+        price_ids = self.env['pharma_pos.price'].search([
+            ('pack_id.product_id', '=', self.price_id.pack_id.product_id.id),
+            ('is_sold', '=', True),
+            ('pack_id.count', '=', 1)
+        ])
+        if len(price_ids) > 1:
+            raise ValidationError('Cannot be unboxed because of duplicate price entries')
+        elif len(price_ids) == 0:
+            raise ValidationError('Cannot be unboxed because of a missing price entry with a count of 1 that matches this product')
+        else:
+            price = price_ids[0].id
+
+        price_id = price
+        batch_number = self.batch_number
+        bought_count = pack_count
+        sold_count = 0
+        left_count = pack_count
+        unboxed_count = 0
+        expiration_date = self.expiration_date
+
+        batch_obj = self.env['pharma_pos.batch'].create({
+            'price_id': price_id,
+            'batch_number': batch_number,
+            'bought_count': bought_count,
+            'sold_count': sold_count,
+            'left_count': left_count,
+            'unboxed_count': unboxed_count,
+            'expiration_date': expiration_date,
+        })
 
 class Delivery(models.Model):
     _name = 'pharma_pos.delivery'
