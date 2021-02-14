@@ -1,7 +1,7 @@
 # Pharmacy Odoo Desktop App 💊
 This is a Dockerized Odoo application designed to run locally on one machine. It works as a POS, inventory system, and expiration tracker for medicines. There is an easy import/export button so that data from the store can be gathered for and processed in the main office. This was created for the use of our family business.
 
-## Images of The Website
+## Images of The Desktop App
 Login Page - where the staff will login
 ![Login Page](https://raw.githubusercontent.com/thisLexic/pharma-pos/main/app_images/login.png)
 
